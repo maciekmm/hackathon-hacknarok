@@ -22,13 +22,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-
       name: 'Map',
       component: MapView
-      /*
-            name: 'eventListItem',
-            component: eventListItem
-      */
+    },
+    {
+      path: '/event',
+      name: 'eventListItem',
+      component: eventListItem
     }
   ]
 })
