@@ -5,7 +5,9 @@ import 'vuetify/dist/vuetify.min.css'
 import MapView from '@/components/home/MapView'
 import 'vuetify/dist/vuetify.min.css'
 import Vuetify from 'vuetify'
+var VueTouch = require('vue-touch')
 
+Vue.use(VueTouch, {name: 'v-touch'})
 Vue.use(Vuetify, {
   theme: {
     primary: '#00A99D',

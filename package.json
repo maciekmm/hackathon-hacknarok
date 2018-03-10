@@ -12,6 +12,7 @@
   "dependencies": {
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vue-touch": "^2.0.0-beta.4",
     "vue2-google-maps": "^0.8.11",
     "vuetify": "^1.0.5"
   },

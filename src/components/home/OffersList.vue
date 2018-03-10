@@ -1,9 +1,14 @@
 <template>
-    <div id="swipe-container" class="swipe mx-auto" fill-width grid-list-md text-xs-center>
-        <v-btn class="trigger-button" block round depressed color="primary" @click="toggle">
-          <span v-if="collapsed">Show</span>
-          <span v-else>Hide</span>
+<div>
+    <div id="swipe-container" v-on:swipeup="toggle" class="swipe mx-auto" fill-width grid-list-md text-xs-center>
+      <v-touch @swipeup="toggle" @swipedown="toggle">
+        <div class="button-wrapper">
+        <v-btn class="trigger-button" color="primary" depressed @click="toggle">
+          <v-icon v-if="collapsed">keyboard_arrow_up</v-icon>
+          <v-icon v-else>keyboard_arrow_down</v-icon>
         </v-btn>
+        </div>
+        <v-spacer></v-spacer>
         <v-layout row wrap>
             <v-flex xs12>
                 Test
@@ -24,6 +29,8 @@
                 Test
             </v-flex>
         </v-layout>
+        </v-touch>
+    </div>
     </div>
 </template>
 <script>
@@ -60,7 +67,7 @@ export default {
   text-align: center;
   width: 100%;
   position: fixed;
-  transform: translateY(-55px);
+  z-index: 10;
   background: #f7f7f7;
 }
 .swipe-active {
@@ -69,5 +76,10 @@ export default {
 .trigger-button {
   max-width: 70%;
   margin: 8pt auto;
+}
+.button-wrapper {
+  width: 100%;
+  height: 60px;
+  background: #00a99d;
 }
 </style>
