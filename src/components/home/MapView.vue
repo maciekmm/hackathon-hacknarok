@@ -5,12 +5,14 @@
     :zoom="7"
   >
   </gmap-map>
+  <offers-list></offers-list>
   </div>
 </template>
 
 <script>
 import * as VueGoogleMaps from "vue2-google-maps";
 import Vue from "vue";
+import OffersList from './OffersList.vue';
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -36,7 +38,7 @@ export default {
     };
   },
   components: {
-    Map
+    OffersList
   }
 };
 </script>
