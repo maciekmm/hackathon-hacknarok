@@ -24,23 +24,11 @@ class RoomSerializer(serializers.ModelSerializer):
         fields = ('pk','caption', 'description', 'limit', 'start', 'end', 'category',
                   'members', 'lon', 'lat', 'storey', 'building_name', 'room_number')
 
-    def create(self, validated_data):
-        room_category = RoomCategory.objects.get(caption=validated_data.get('category').get('caption'))
-        validated_data.pop('category')
-
-        members = validated_data.pop('members')
-        room = Room.objects.create(**validated_data, category=room_category)
-        room.members.add(*members)
-
-        return room
-
     def validate_category(self, value):
-        if not RoomCategory.objects.filter(caption=value.get('caption')).exists():
+        room_category = RoomCategory.objects.get(caption=value.get('caption'))
+        if room_category is None:
             raise serializers.ValidationError("Room with %s caption does not exist!" % value.get('caption', None))
-        return value
-
-    def update(self, instance, validated_data):
-        pass
+        return room_category
 
 
 @api_view(['GET', 'POST'])
