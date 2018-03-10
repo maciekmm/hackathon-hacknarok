@@ -6,26 +6,26 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+class RoomCategory(models.Model):
+    caption = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.caption
+
+
 class Room(models.Model):
     caption = models.CharField(max_length=128)
     description = models.TextField(blank=True)
     limit = models.IntegerField(blank=True, null=True)
     start = models.DateTimeField()
-    duration = models.TimeField(null=True)
-    category = models.ForeignKey('RoomCategory', on_delete=models.SET_NULL, null=True)
+    end = models.DateTimeField(null=True, blank=True)
+    category = models.ForeignKey(RoomCategory, on_delete=models.SET_NULL, null=True)
     members = models.ManyToManyField(User)
     lon = models.DecimalField(max_digits=9, decimal_places=6)
     lat = models.DecimalField(max_digits=9, decimal_places=6)
     storey = models.IntegerField(blank=True, null=True)
     building_name = models.CharField(blank=True, max_length=128)
     room_number = models.CharField(blank=True, max_length=64)
-
-    def __str__(self):
-        return self.caption
-
-
-class RoomCategory(models.Model):
-    caption = models.CharField(max_length=128)
 
     def __str__(self):
         return self.caption
