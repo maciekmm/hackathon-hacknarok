@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import ListElement from "./components/eventListItem";
+  import ListElement from "./components/home/eventListItem";
 
 export default {
   components: {ListElement},
