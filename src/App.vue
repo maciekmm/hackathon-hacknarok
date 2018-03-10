@@ -12,14 +12,11 @@
 </template>
 
 <script>
+  import ListElement from "./components/eventListItem";
+
 export default {
-  name: 'app',
-  data() {
-    return {
-      title: 'WeLearn'
-    }
-  }
-  
+  components: {ListElement},
+  name: 'app'
 }
 </script>
 
