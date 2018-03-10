@@ -7,11 +7,11 @@
           <v-icon v-if="collapsed">keyboard_arrow_up</v-icon>
           <v-icon v-else>keyboard_arrow_down</v-icon>
         </v-btn>
-
         </div>
         <v-spacer></v-spacer>
         <v-layout row wrap>
           <eventListItem
+            class="align--left"
             v-for="item in items" :key="item.id"
             v-bind:subject=item.subject
             v-bind:subjectDesc=item.subjectDesc
@@ -95,16 +95,15 @@
   z-index: 10;
   background: #f7f7f7;
 }
-
-.swipe * {
-  text-align: initial;
-}
 .swipe-active {
   transform: translateY(-100%);
 }
 .trigger-button {
   max-width: 70%;
   margin: 8pt auto;
+}
+.align--left * {
+  text-align: left;
 }
 .button-wrapper {
   width: 100%;
