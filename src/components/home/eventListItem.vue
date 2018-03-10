@@ -40,7 +40,6 @@
 <script>
   module.exports = {
     name: 'eventListItem',
-    props: ['subject', 'subjectDesc', 'distance', 'currentUsers', 'totalUsers', 'time'],
     data: function (test) {
       return {
         subject: test.subject,

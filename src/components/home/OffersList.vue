@@ -102,7 +102,7 @@
   max-width: 70%;
   margin: 8pt auto;
 }
-.align--left * {
+.align--left {
   text-align: left;
 }
 .button-wrapper {

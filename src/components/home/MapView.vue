@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { store, API_HOST } from "../../store/store.js";
 import * as VueGoogleMaps from "vue2-google-maps";
 import Vue from "vue";
 import OffersList from "./OffersList.vue";
@@ -31,29 +32,41 @@ export default {
   data: function data() {
     return {
       center: { lat: 10.0, lng: 10.0 },
-      icon: 'gps_not_fixed'
+      icon: "gps_not_fixed",
+      rooms: [],
+      error: ''
     };
   },
   mounted() {
-    this.getLocationAndCenter()
+    store.login(this, { username: "admin", password: "admin0000" }, data => {
+      this.$http.get(API_HOST + "rooms/", {headers: store.getAuthHeader()}).then(
+        data => {
+          this.rooms = data.body
+        },
+        data => {
+          this.error = data.err
+        }
+      );
+    });
+    this.getLocationAndCenter();
   },
   methods: {
     getLocationAndCenter() {
-      this.icon = 'gps_not_fixed'
+      this.icon = "gps_not_fixed";
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(this.centerMap, (error) => {
-          this.icon = 'gps_off'
-        })
+        navigator.geolocation.getCurrentPosition(this.centerMap, error => {
+          this.icon = "gps_off";
+        });
       } else {
-          this.icon = 'gps_off'
+        this.icon = "gps_off";
       }
     },
     centerMap(position) {
       this.center = {
-        lat: position.coords.latitude + Math.random()/1000,
-        lng: position.coords.longitude + Math.random()/1000,
-      }
-      this.icon = 'gps_fixed'
+        lat: position.coords.latitude + Math.random() / 1000,
+        lng: position.coords.longitude + Math.random() / 1000
+      };
+      this.icon = "gps_fixed";
     }
   },
   components: {
