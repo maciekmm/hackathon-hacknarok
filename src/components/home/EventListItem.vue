@@ -7,8 +7,6 @@
         <v-flex xs4>
 
           <p class="orange--text time">
-            <!--{{(new Date(this.event.start)).toLocaleDateString()}}
-            <br>-->
           {{(new Date(this.event.start)).toTimeString().substr(0,5)}}
         </p>
         </v-flex>
@@ -126,6 +124,7 @@ currentUsers: test.currentUsers,
   .event-card:hover {
     background-color: #e6e6e6;
   }
+
   .max-height {
     height: 100%
   }
