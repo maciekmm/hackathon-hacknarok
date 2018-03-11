@@ -9,6 +9,7 @@
           <p class="orange--text time">
             <!--{{(new Date(this.event.start)).toLocaleDateString()}}
             <br>-->
+
           {{(new Date(this.event.start)).toTimeString().substr(0,5)}}
         </p>
         </v-flex>
@@ -82,7 +83,6 @@
         let room = this.room;
         let userPk = window.localStorage.getItem('userPk');
 
-
         // THIS SHOULD BE DONE ON BACKEND! + It doesn't work for deleting users from room and empty rooms. xD
 
         if (this.joined) {
@@ -92,11 +92,9 @@
           }
         } else
           room.members = room.members.concat(userPk);
-
         this.$http.put(API_URL + 'rooms/' + room.pk, room)
           .then(response => console.log(response))
           .catch(err => console.log(err));
-
       },
       distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
         var earthRadiusKm = 6371;
@@ -106,6 +104,7 @@
         lat2 = lat2 * Math.PI / 180;
         var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        if (parseInt(earthRadiusKm * c) < 1) return "<1"
         return parseInt(earthRadiusKm * c);
       }
     },

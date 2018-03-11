@@ -14,16 +14,19 @@
                 <v-container fill-height fluid>
                   <v-layout fill-height row wrap>
                     <v-flex offset-md1 xs12 md10>
-                      <v-text-field label="Username" :rules="requiredRule" v-model="credentials.username" required></v-text-field>
+                      <v-text-field label="Login" :rules="requiredRule" v-model="credentials.username"
+                                    required></v-text-field>
                     </v-flex>
                     <v-flex offset-md1 xs12 md10>
-                      <v-text-field label="Password" type="password" :rules="requiredRule" v-model="credentials.password" required></v-text-field>
+                      <v-text-field label="Hasło" type="password" :rules="requiredRule" v-model="credentials.password"
+                                    required></v-text-field>
                     </v-flex>
                     <v-flex offset-md1 xs12 md10>
-                      <v-btn color="primary" block round depressed type="submit" v-on:click="login">Log in</v-btn>
+                      <v-btn color="primary" block round depressed type="Zaloguj" v-on:click="login">Log in</v-btn>
                     </v-flex>
                     <v-flex offset-md1 xs12 md10>
-                        Don't have an account? <router-link to="/register">Sign up</router-link>
+                      Nie masz jeszcze konta?
+                      <router-link to="/register">Zarejestruj się</router-link>
                     </v-flex>
                   </v-layout>
                 </v-container>
@@ -47,7 +50,7 @@
           username: "",
           password: ""
         },
-        requiredRule: [v => !!v || "This field is required"],
+        requiredRule: [v => !!v || "To pole jest wymagane"],
       };
     },
     methods: {

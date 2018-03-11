@@ -16,7 +16,6 @@
 
 <script>
 import { API_URL } from "@/constants.js";
-
 export default {
   name: "app",
   methods: {

@@ -12,7 +12,7 @@
             <v-text-field class="mx-auto search-bar" prepend-icon="search" hide-details solo light single-line/>
           </v-flex>
           <v-flex sm12 md2>
-            <v-select label="Category"
+            <v-select label="Kategoria"
                       solo
                       clearable
                       :close-on-click="true"
@@ -29,12 +29,10 @@
     <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13">
 
       <gmap-marker v-for="i in this.store.rooms" icon='/static/img/icon/icon_map.png' v-bind:key="i.pk"
+                   :clickable=true
+                   v-on:click=konsolog(i.pk)
                    :position="{lat:parseFloat(i.lat), lng:parseFloat(i.lon)}">
       </gmap-marker>
-
-      <gmap-info-window :position="{lat:50.38, lng:20.8}">
-        Hello world!
-      </gmap-info-window>
     </gmap-map>
 
 
@@ -66,8 +64,8 @@ export default {
   data: function data() {
     return {
       center: {
-        lat: 10.0,
-        lng: 10.0
+        lat: 49.3,
+        lng: 20.0
       },
       icon: "gps_not_fixed",
       error: "",
@@ -94,6 +92,9 @@ export default {
     this.getLocationAndCenter();
   },
   methods: {
+    konsolog(mesycz) {
+      console.log(mesycz);
+    },
     getLocationAndCenter() {
       this.icon = "gps_not_fixed";
       if (navigator.geolocation) {

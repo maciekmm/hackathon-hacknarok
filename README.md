@@ -1,6 +1,10 @@
-# welearn
+# WeLearn
 
-> Gather people to learn
+Welearn is an adaptive web app designed to help people learning together.
+
+  Using this app you can plan and take part in social learning in your neighbourhood. Simply select interesting category to see nearest gatherings in your area. You can also plan your own studying groups using button in bottom right of the screen.
+
+
 
 ## Build Setup
 
