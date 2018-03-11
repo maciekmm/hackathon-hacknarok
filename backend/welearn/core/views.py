@@ -41,7 +41,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(many=False)
+    profile = serializers.StringRelatedField(many=False)
 
     class Meta:
         model = User
@@ -51,8 +51,6 @@ class UserSerializer(serializers.ModelSerializer):
 @api_view(['GET', 'POST'])
 def rooms_list(request):
     if request.method == 'GET':
-        print("Whatever")
-
         rooms = Room.objects.all()
 
         range = request.query_params.get('range', None)
@@ -74,7 +72,6 @@ def rooms_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        print(request.data)
         serializer = RoomSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -148,7 +145,9 @@ def users_list(request):
 @api_view(['POST'])
 @permission_classes((AllowAny, ))
 def register(request):
+
     serializer = UserSerializer(data=request.data)
+
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
