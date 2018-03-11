@@ -1,21 +1,21 @@
 <template>
-<div class="map-wrapper">
-  <div style="height: 100%; width: 100%;">
-    <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13">
-    </gmap-map>
-    <v-btn bottom fab right fixed @click="this.getLocationAndCenter" class="center-button" >
-      <v-icon dark>{{ this.icon }}</v-icon>
-    </v-btn>
-    <offers-list></offers-list>
+  <div class="map-wrapper">
+    <div style="height: 100%; width: 100%;">
+      <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13">
+      </gmap-map>
+      <v-btn bottom fab right fixed @click="this.getLocationAndCenter" class="center-button">
+        <v-icon dark>{{ this.icon }}</v-icon>
+      </v-btn>
+      <offers-list></offers-list>
+    </div>
   </div>
 </div>
 </template>
 
 <script>
   import {
-    store,
-    API_HOST
-  } from "../../store/store.js";
+    API_URL
+  } from '@/constants.js'
   import * as VueGoogleMaps from "vue2-google-maps";
   import Vue from "vue";
   import OffersList from "./OffersList.vue";
@@ -35,28 +35,22 @@
           lng: 10.0
         },
         icon: "gps_not_fixed",
-        rooms: store.store.rooms,
+        data: this.$store.data,
         error: ""
       };
     },
     mounted() {
-      store.login(this, {
-        username: "admin",
-        password: "admin0000"
-      }, data => {
-        this.$http
-          .get(API_HOST + "rooms/", {
-            headers: store.getAuthHeader()
-          })
-          .then(
-            data => {
-              store.store.rooms = data.body;
-            },
-            data => {
-              this.error = data.err;
-            }
-          );
-      });
+      this.$http
+        .get(API_URL + "rooms/")
+        .then(
+          data => {
+            this.data.rooms = data.body;
+            console.log(this.$store.data)
+          },
+          data => {
+            this.error = data.err;
+          }
+        );
       this.getLocationAndCenter();
     },
     methods: {
@@ -94,8 +88,10 @@
     width: 100%;
     height: calc(100% - 60px);
   }
+
   .center-button {
     margin-bottom: 60px;
     z-index: 1;
   }
+
 </style>

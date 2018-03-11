@@ -5,6 +5,7 @@ import 'vuetify/dist/vuetify.min.css'
 import MapView from '@/components/home/MapView'
 import 'vuetify/dist/vuetify.min.css'
 import Vuetify from 'vuetify'
+import Login from '@/components/user/Login'
 var VueTouch = require('vue-touch')
 
 Vue.use(VueTouch, {name: 'v-touch'})
@@ -34,6 +35,11 @@ export default new Router({
       path: '/event',
       name: 'EventListItem',
       component: EventListItem
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })
