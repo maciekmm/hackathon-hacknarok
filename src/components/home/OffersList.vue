@@ -10,7 +10,12 @@
         </div>
         <v-container grid-list-md text-xs-center>
           <v-layout row wrap>
-            <eventListItem color="primary" v-for="item in store.rooms" :key="item.pk" :event="item">
+            <eventListItem
+              color="primary"
+              v-for="item in store.rooms"
+              @click.native="goToRoom(item.pk)"
+              :key="item.pk"
+              :event="item">
             </eventListItem>
           </v-layout>
         </v-container>
