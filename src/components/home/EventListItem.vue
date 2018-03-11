@@ -3,12 +3,14 @@
     <v-card color="white-grey lighten-2">
       <v-card-title primary-title color="blue-grey darken-2">
         <v-layout row align="end">
-          <p id="time" class="orange--text">{{time}}</p>
+          <p id="time" class="orange--text">{{new Date(this.event.start)}}</p>
           <v-flex>
             <div class="card-header">
-              <span class="headline">{{subject}}</span>
-              <br>
-              <span class="secondaryText--text">{{subjectDesc}}</span>
+              <div style="margin: 0 auto">
+                <span class="headline">{{this.event.caption}}</span>
+                <br>
+                <span class="secondaryText--text" v-if="this.event.description">{{this.event.description}}</span>
+              </div>
             </div>
           </v-flex>
         </v-layout>
@@ -18,12 +20,12 @@
           <v-flex xs8>
             <v-layout class="align-center">
               <v-flex>
-                <span id="distance" class="primary--text">{{distance}}</span>
+                <span id="distance" class="primary--text"></span>
               </v-flex>
               <v-flex>
             <span>
             <v-icon>group</v-icon>
-            {{currentUsers}}/{{totalUsers}} osób
+            {{this.event.members.length}}<span v-if="this.event.limit">/{{this.event.limit}}</span> osób
           </span>
               </v-flex>
             </v-layout>
@@ -39,22 +41,20 @@
 
 <script>
   module.exports = {
-    name: 'eventListItem',
-    data: function (test) {
-      return {lUsers: test.totalUsers,
-        time: test.time
-
-      }
-    }
-  }
+    name: 'EventListItem',
+    props: ['event']
+  };
 </script>
-        subject: test.subject,
-        subjectDesc: test.subjectDesc,
-        distance: test.distance,
-        currentUsers: test.currentUsers,
-        tota
+subject: test.subject,
+subjectDesc: test.subjectDesc,
+distance: test.distance,
+currentUsers: test.currentUsers,
+tota
 
 <style scoped>
+  #distance {
+    font-weight: bolder;
+  }
 
   .card-header {
     margin: 0 auto

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import eventListItem from '@/components/home/eventListItem.vue'
+import EventListItem from '@/components/home/EventListItem.vue'
 import 'vuetify/dist/vuetify.min.css'
 import MapView from '@/components/home/MapView'
 import 'vuetify/dist/vuetify.min.css'
@@ -27,8 +27,8 @@ export default new Router({
     },
     {
       path: '/event',
-      name: 'eventListItem',
-      component: eventListItem
+      name: 'EventListItem',
+      component: EventListItem
     }
   ]
 })

@@ -2,62 +2,68 @@ export const API_HOST = 'https://welearn.math.party/'
 
 export var store = {
 
-  user: {
-    authenticated: false,
-    role: 0
-  },
+	user: {
+		authenticated: false,
+		role: 0
+    },
 
-  login(context, creds, callback) {
-    context.$http.post(API_HOST + 'api-token-auth/', creds).then((data) => {
-        localStorage.setItem('jwt_token', data.body.token);
-        this.user.authenticated = true;
+    store: {
+        rooms: [],
+    },
 
-        if (callback) {
-          callback(data);
-        }
-      },
-      (data) => {
-        context.error = data.err;
-      });
-  },
+	login (context, creds, callback) {
+		context.$http.post(API_HOST + 'api-token-auth/', creds).then((data) => {
+			localStorage.setItem('jwt_token', data.body.token)
+            this.user.authenticated = true
 
-  signup(context, creds, redirect) {
-    context.$http.post(API_PATH + 'users/', creds).then((data) => {
-        localStorage.setItem('jwt_token', data.body.token);
-        this.user.authenticated = true;
+            if(callback) {
+                callback(data)
+            }
+		},
+		(data) => {
+			context.error = data.err
+		})
+	},
 
-        if (redirect) {
-          router.push({ name: redirect });
-        }
-      },
-      (data) => {
-        context.error = data.err;
-      });
-  },
+	signup (context, creds, redirect) {
+		context.$http.post(API_PATH + 'users/', creds).then((data) => {
+			localStorage.setItem('jwt_token', data.body.token)
+			this.user.authenticated = true
 
-  logout() {
-    localStorage.removeItem('jwt_token');
-    this.user.authenticated = false;
-  },
+			if (redirect) {
+				router.push({ name: redirect })
+			}
+		},
+		(data) => {
+			context.error = data.err
+		})
+	},
+
+	logout () {
+		localStorage.removeItem('jwt_token')
+		this.user.authenticated = false
+	},
 
 
-  refreshToken(context) {
-    context.$http.get(API_HOST + 'api-token-refresh', { headers: auth.getAuthHeader() }).then((data) => {
-        localStorage.setItem('jwt_token', data.body.token);
-      },
-      (data) => {
-        console.log(data);
-      });
-  },
+	refreshToken (context) {
+		context.$http.get(API_HOST+'api-token-refresh', { headers: auth.getAuthHeader() }).then((data) => {
+			localStorage.setItem('jwt_token', data.body.token)
+		},
+		(data) => { console.log(data) })
+	},
 
-  checkAuth() {
-    const jwt = localStorage.getItem('jwt_token');
-    this.user.authenticated = !!jwt;
-  },
+	checkAuth () {
+		var jwt = localStorage.getItem('jwt_token')
+		if (jwt) {
+			this.user.authenticated = true
+		} else {
+			this.user.authenticated = false
+		}
+	},
 
-  getAuthHeader() {
-    return {
-      'Authorization': 'JWT ' + localStorage.getItem('jwt_token')
-    };
-  }
-};
+	getAuthHeader () {
+		return {
+			'Authorization': 'JWT ' + localStorage.getItem('jwt_token')
+		}
+	}
+}
