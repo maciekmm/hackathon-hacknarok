@@ -1,6 +1,6 @@
 <template>
-  <v-flex xs12 sm6 md4 class="event-card">
-    <v-card class="max-height">
+  <v-flex xs12 sm6 md4>
+    <v-card class="max-height rounded">
 
       <v-card-title class="px-0 height-half" primary-title>
         <v-flex xs4>
@@ -13,7 +13,7 @@
         </v-flex>
 
         <v-flex xs8>
-          <div class="card-header">
+          <div class="card-header rounded">
             <div class="no-margin">
               <span class="black--text">{{this.event.caption}}</span>
               <br>
@@ -42,7 +42,7 @@
             </v-layout>
           </v-flex>
           <v-flex>
-            <v-btn depressed block color="primary">Dołącz</v-btn>
+            <v-btn block color="primary" round>Dołącz</v-btn>
           </v-flex>
         </v-layout>
       </v-card-text>
@@ -80,6 +80,7 @@ currentUsers: test.currentUsers,
 <style scoped>
 
   .event-card {
+    cursor: pointer;
     word-wrap: normal;
   }
 
@@ -109,5 +110,9 @@ currentUsers: test.currentUsers,
     padding: 10px;
     font-size: large;
     font-weight: bold;
+  }
+
+  .rounded {
+    border-radius: 20px;
   }
 </style>
