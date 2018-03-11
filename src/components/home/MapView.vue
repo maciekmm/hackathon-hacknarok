@@ -28,7 +28,7 @@
 
     <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13">
 
-      <gmap-marker v-for="i in this.store.rooms"
+      <gmap-marker v-for="i in this.store.rooms" icon='/static/img/icon/icon_map.png' v-bind:key="i.pk"
                    :position="{lat:parseFloat(i.lat), lng:parseFloat(i.lon)}">
       </gmap-marker>
 
@@ -42,7 +42,7 @@
       <v-icon dark>{{ this.icon }}</v-icon>
     </v-btn>
 
-    <v-btn bottom fab right fixed @click="" style="margin-bottom: 130px" class="center-button">
+    <v-btn bottom fab right fixed style="margin-bottom: 130px" class="center-button">
       <v-icon dark>add</v-icon>
     </v-btn>
     <offers-list/>
