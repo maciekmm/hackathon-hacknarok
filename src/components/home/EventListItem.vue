@@ -48,7 +48,7 @@
             <v-btn
               @click.stop="joinRoom(event.pk)"
               block color="primary" round>
-              Dołącz
+              {{joinText}}
             </v-btn>
           </v-flex>
         </v-layout>
@@ -62,24 +62,41 @@
 
   export default {
     name: 'EventListItem',
+    computed: {
+      joined() {
+        const userPk = window.localStorage.getItem('userPk');
+        return this.room.members.indexOf(userPk) !== -1;
+      },
+      room() {
+        return this.$store.data.rooms.filter(room => room.pk === this.event.pk)[0]
+      },
+      joinText() {
+        if (this.joined)
+          return 'Wyjdź';
+        else
+          return 'Dołącz';
+      }
+    },
     props: ['event'],
     methods: {
       joinRoom(roomId) {
-        console.log(this.$store.rooms);
-
-        let room = this.$store.data.rooms.filter(room => room.pk === roomId)[0];
+        let room = this.room;
         let userPk = window.localStorage.getItem('userPk');
 
-        const userIndex = room.members.indexOf(userPk);
-        if (userIndex > -1) {
-          room.members.splice(userIndex, 1);
-        }
-        room.members = room.members.concat(userPk);
+
+        // THIS SHOULD BE DONE ON BACKEND! + It doesn't work for deleting users from room and empty rooms. xD
+
+        if (this.joined) {
+          const userIndex = room.members.indexOf(userPk);
+          if (userIndex > -1) {
+            room.members.splice(userIndex, 1);
+          }
+        } else
+          room.members = room.members.concat(userPk);
 
         this.$http.put(API_URL + 'rooms/' + room.pk, room)
-          .then(response => {
-          })
-          .catch(err => console.log);
+          .then(response => console.log(response))
+          .catch(err => console.log(err));
 
       },
       distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
