@@ -41,6 +41,10 @@
     <v-btn bottom fab right fixed @click="this.getLocationAndCenter" class="center-button">
       <v-icon dark>{{ this.icon }}</v-icon>
     </v-btn>
+
+    <v-btn bottom fab right fixed @click="" style="margin-bottom: 130px" class="center-button">
+      <v-icon dark>add</v-icon>
+    </v-btn>
     <offers-list/>
   </div>
 </template>
@@ -99,6 +103,9 @@ export default {
       } else {
         this.icon = "gps_off";
       }
+    },
+    addRoom() {
+
     },
     centerMap(position) {
       this.center = {
