@@ -7,6 +7,8 @@ from rest_framework import serializers, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.utils import json
+from rest_framework_jwt.views import ObtainJSONWebToken
 
 from core.models import Room, RoomCategory, Profile
 
@@ -171,3 +173,18 @@ def users_details(request, pk):
     elif request.method == 'DELETE':
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ObtainJWTToken(ObtainJSONWebToken):
+
+    # UTTERLY UGLY!
+    def post(self, request, *args, **kwargs):
+        jwt_response = super(ObtainJWTToken, self).post(request, *args, **kwargs)
+        user = User.objects.get(username=request.data.get('username'))
+
+        # print(UserSerializer(user).data)
+        u_serializer_data = UserSerializer(user).data
+        resp_serializer_data = jwt_response.data
+
+        response_data = {**u_serializer_data, **resp_serializer_data}
+        return Response(data=response_data)
