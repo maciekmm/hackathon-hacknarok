@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^categories/(?P<pk>[0-9]+)', views.categories_detail),
     url(r'^users/$', views.users_list),
     url(r'^users/(?P<pk>[0-9]+)$', views.users_details),
+    url(r'^register/$', views.register),
 
     url(r'^api-token-auth/$', views.ObtainJWTToken.as_view()),
     url(r'^api-token-refresh/$', refresh_jwt_token),
