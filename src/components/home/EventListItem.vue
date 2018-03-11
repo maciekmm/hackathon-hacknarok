@@ -5,10 +5,12 @@
         <v-layout row align="end">
           <p id="time" class="orange--text">{{new Date(this.event.start)}}</p>
           <v-flex>
-            <div style="margin: 0 auto">
-              <span class="headline">{{this.event.caption}}</span>
-              <br>
-              <span class="secondaryText--text" v-if="this.event.description">{{this.event.description}}</span>
+            <div class="card-header">
+              <div style="margin: 0 auto">
+                <span class="headline">{{this.event.caption}}</span>
+                <br>
+                <span class="secondaryText--text" v-if="this.event.description">{{this.event.description}}</span>
+              </div>
             </div>
           </v-flex>
         </v-layout>
@@ -16,7 +18,7 @@
       <v-card-text>
         <v-layout wrap fluid>
           <v-flex xs8>
-            <v-layout style="text-align: center">
+            <v-layout class="align-center">
               <v-flex>
                 <span id="distance" class="primary--text"></span>
               </v-flex>
@@ -38,27 +40,40 @@
 </template>
 
 <script>
-module.exports = {
-  name: "EventListItem",
-  props: ["event"],
-};
+  module.exports = {
+    name: 'EventListItem',
+    props: ['event']
+  };
 </script>
+subject: test.subject,
+subjectDesc: test.subjectDesc,
+distance: test.distance,
+currentUsers: test.currentUsers,
+tota
 
 <style scoped>
-#distance {
-  font-weight: bolder;
-}
+  #distance {
+    font-weight: bolder;
+  }
 
-#time {
-  align-self: left;
-  border-radius: 20px;
-  padding: 10px;
-  font-size: large;
-  font-weight: bold;
-  border: 2px solid orange;
-}
+  .card-header {
+    margin: 0 auto
+  }
 
-div {
-  border-radius: 20px;
-}
+  #distance {
+    font-weight: bolder;
+  }
+
+  #time {
+    align-self: left;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: large;
+    font-weight: bold;
+    border: 2px solid orange;
+  }
+
+  div {
+    border-radius: 20px;
+  }
 </style>
