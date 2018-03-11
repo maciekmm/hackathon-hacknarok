@@ -1,7 +1,7 @@
 <template>
   <div class="map-wrapper">
     <v-toolbar fixed class="gradient-background" flat height="100">
-      <v-container class="pointer-events" align-center grid-list-xs text-xs-center>
+      <v-container class="pointer-events" align-center grid-list-lg text-xs-center>
         <v-layout row wrap>
           <v-flex sm12 md2 text-xs-center>
             <router-link class="link-disabled" to="/">
