@@ -26,7 +26,18 @@
       </v-container>
     </v-toolbar>
 
-    <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13"/>
+    <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13">
+
+      <gmap-marker v-for="i in this.store.rooms"
+                   :position="{lat:parseFloat(i.lat), lng:parseFloat(i.lon)}">
+      </gmap-marker>
+
+      <gmap-info-window :position="{lat:50.38, lng:20.8}">
+        Hello world!
+      </gmap-info-window>
+    </gmap-map>
+
+
     <v-btn bottom fab right fixed @click="this.getLocationAndCenter" class="center-button">
       <v-icon dark>{{ this.icon }}</v-icon>
     </v-btn>
@@ -77,6 +88,10 @@
     },
     methods: {
       getLocationAndCenter() {
+
+
+        console.log(this.store.rooms)
+
         this.icon = 'gps_not_fixed';
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(this.centerMap, error => {
