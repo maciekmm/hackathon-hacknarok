@@ -5,6 +5,10 @@
         <transition name="fade">
         <router-view :key="$route.fullPath"/>
         </transition>
+
+    <v-btn small top fab right fixed class="center-button" v-if="this.isLoggedIn()" @click="logout">
+      <v-icon dark>exit_to_app</v-icon>
+    </v-btn>
       </v-container>
     </v-content>
   </v-app>
@@ -14,7 +18,17 @@
 import { API_URL } from "@/constants.js";
 
 export default {
-  name: "app"
+  name: "app",
+  methods: {
+    isLoggedIn() {
+      return this.$store.user.token() &&
+        this.$route.name !== "Login" &&
+        this.$route.name !== "Register";
+    },
+    logout() {
+      this.$store.user.logout(this.$router);
+    }
+  }
 };
 </script>
 
