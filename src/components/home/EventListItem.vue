@@ -1,6 +1,8 @@
 <template>
-  <v-flex xs12 sm6 md4>
-    <v-card class="max-height rounded event-card">
+
+  <v-flex xs12 sm5 md3 my-3 mx-1 class="event-card"
+          style="overflow:hidden;padding-bottom: 60px;box-sizing: border-box;">
+    <v-card class="max-height" height="100%">
 
       <v-card-title class="px-0 height-half" primary-title>
         <v-flex xs4>
@@ -17,15 +19,16 @@
             <div class="no-margin">
               <span class="black--text">{{this.event.caption}}</span>
               <br>
-              <span class="secondaryText--text" v-if="this.event.description">{{this.event.description}}</span>
+              <span class="height-half secondaryText--text"
+                    v-if="this.event.description">{{this.event.description}}</span>
             </div>
           </div>
         </v-flex>
       </v-card-title>
-      <v-card-text class="px-0 no-margin">
-        <v-layout wrap fluid>
+      <v-card-text class="px-0 no-margin" style="background-color:#f9f9f9;">
+        <v-layout wrap fluid style="">
           <v-flex xs8>
-            <v-layout class="align-center">
+            <v-layout>
               <v-flex>
                 <span class="primary--text distance">
                   {{
@@ -76,9 +79,6 @@
         console.log(room);
 
       },
-      degreesToRadians(degrees) {
-        return (degrees);
-      },
       distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
         var earthRadiusKm = 6371;
         var dLat = (lat2 - lat1) * Math.PI / 180;
@@ -99,7 +99,6 @@ distance: test.distance,
 currentUsers: test.currentUsers,
 
 <style scoped>
-
   .event-card {
     cursor: pointer;
     word-wrap: normal;
@@ -112,7 +111,6 @@ currentUsers: test.currentUsers,
   * {
     padding: 3px;
   }
-
   .max-height {
     height: 100%
   }
