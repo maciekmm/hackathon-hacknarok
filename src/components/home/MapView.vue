@@ -26,6 +26,10 @@
       </v-container>
     </v-toolbar>
 
+    <v-dialog v-model="this.dialog" max-width="500px">
+            <add-room></add-room>
+      </v-dialog>
+
     <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13">
 
       <gmap-marker v-for="i in this.store.rooms" icon='/static/img/icon/icon_map.png' v-bind:key="i.pk"
@@ -40,7 +44,7 @@
       <v-icon dark>{{ this.icon }}</v-icon>
     </v-btn>
 
-    <v-btn bottom fab right fixed style="margin-bottom: 130px" class="center-button">
+    <v-btn bottom fab right fixed style="margin-bottom: 130px" @click="dialog = !dialog" class="center-button">
       <v-icon dark>add</v-icon>
     </v-btn>
     <offers-list/>
@@ -51,6 +55,7 @@
 import * as VueGoogleMaps from "vue2-google-maps";
 import Vue from "vue";
 import OffersList from "./OffersList.vue";
+import AddRoom from "@/components/room/AddRoom";
 import { API_URL } from "@/constants.js";
 
 Vue.use(VueGoogleMaps, {
@@ -67,12 +72,16 @@ export default {
         lat: 49.3,
         lng: 20.0
       },
+      dialog: false,
       icon: "gps_not_fixed",
       error: "",
       store: this.$store.data
     };
   },
   mounted() {
+    this.$store.bus.$on('hide-dialog', () => {
+      this.dialog = false;
+    })
     this.$http.get(API_URL + "categories/").then(
       data => {
         this.store.categories = data.body;
@@ -105,9 +114,7 @@ export default {
         this.icon = "gps_off";
       }
     },
-    addRoom() {
-
-    },
+    addRoom() {},
     centerMap(position) {
       this.center = {
         lat: position.coords.latitude + Math.random() / 1000,
@@ -117,7 +124,8 @@ export default {
     }
   },
   components: {
-    OffersList
+    OffersList,
+    AddRoom
   }
 };
 </script>
@@ -125,7 +133,6 @@ export default {
 .link-disabled {
   text-decoration: none;
 }
-
 
 .map-wrapper {
   height: 100%;
