@@ -4,6 +4,7 @@ import Vue from 'vue'
 
 const jwtDecode = require('jwt-decode');
 
+
 let store = {
   bus: new Vue(),
   user: {

@@ -7,16 +7,12 @@
 </template>
 
 <script>
-  import {
-    store
-  } from '../../store/store.js';
-
   export default {
     name: 'Room',
     data() {
       return {
         roomId: this.$route.params.roomId,
-        room: store.store.rooms.filter(room => room.pk === this.roomId)
+        room: this.$store.data.rooms.filter(room => room.pk === this.roomId)
       };
     }
   };

@@ -14,7 +14,7 @@
           <v-flex sm12 md2>
             <v-select label="Category"
                       solo
-                      clearable="true"
+                      clearable
                       :close-on-click="true"
                       :items="this.store.categories"
                       item-text="caption"
@@ -36,10 +36,6 @@
 </template>
 
 <script>
-  import {
-    store,
-    API_HOST
-  } from '../../store/store.js';
   import * as VueGoogleMaps from 'vue2-google-maps';
   import Vue from 'vue';
   import OffersList from './OffersList.vue';
@@ -62,9 +58,8 @@
           lng: 10.0
         },
         icon: 'gps_not_fixed',
-        rooms: store.store.rooms,
         error: '',
-        store: store.store
+        store: this.$store.data
       };
     },
     mounted() {
@@ -72,7 +67,7 @@
         .get(API_URL + "rooms/")
         .then(
           data => {
-            this.data.rooms = data.body;
+            this.store.rooms = data.body;
             console.log(this.$store.data)
           },
           data => {
