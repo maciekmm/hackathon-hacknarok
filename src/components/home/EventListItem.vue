@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 sm6 md4>
-    <v-card class="max-height rounded">
+    <v-card class="max-height rounded event-card">
 
       <v-card-title class="px-0 height-half" primary-title>
         <v-flex xs4>
@@ -42,7 +42,11 @@
             </v-layout>
           </v-flex>
           <v-flex>
-            <v-btn block color="primary" round>Dołącz</v-btn>
+            <v-btn
+              @click.stop="joinRoom(event.pk)"
+              block color="primary" round>
+              Dołącz
+            </v-btn>
           </v-flex>
         </v-layout>
       </v-card-text>
@@ -55,6 +59,11 @@
     name: 'EventListItem',
     props: ['event'],
     methods: {
+      joinRoom(roomId) {
+        console.log('Joinging room: ' + roomId);
+        // let room = this.event;
+        // room.members = room.members.concat()
+      },
       degreesToRadians(degrees) {
         return (degrees);
       },
@@ -82,6 +91,10 @@ currentUsers: test.currentUsers,
   .event-card {
     cursor: pointer;
     word-wrap: normal;
+  }
+
+  .event-card:hover {
+    background-color: #e6e6e6;
   }
 
   * {

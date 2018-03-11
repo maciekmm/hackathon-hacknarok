@@ -1,5 +1,5 @@
 <template>
-  <div class="full-width">
+  <div @keyup.enter="login" class="full-width">
     <v-toolbar class="gradient-background" flat height="100">
       <v-container class="pointer-events" align-center grid-list-lg text-xs-center>
         <v-layout row wrap>
