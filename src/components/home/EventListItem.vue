@@ -1,8 +1,7 @@
 <template>
 
-  <v-flex xs12 sm5 md3 my-3 mx-1 class="event-card"
-          style="overflow:hidden;padding-bottom: 60px;box-sizing: border-box;">
-    <v-card class="max-height" height="100%">
+  <v-flex xs12 sm5 md3 my-3 mx-2 class="event-card">
+    <v-card px-2 class="max-height" height="100%">
 
       <v-card-title class="px-0 height-half" primary-title>
         <v-flex xs4>
@@ -44,7 +43,7 @@
               </v-flex>
             </v-layout>
           </v-flex>
-          <v-flex>
+          <v-flex mx-2>
             <v-btn
               @click.stop="joinRoom(event.pk)"
               block color="primary" round>
@@ -106,10 +105,6 @@ currentUsers: test.currentUsers,
 
   .event-card:hover {
     background-color: #e6e6e6;
-  }
-
-  * {
-    padding: 3px;
   }
   .max-height {
     height: 100%
