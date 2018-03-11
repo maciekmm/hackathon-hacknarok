@@ -14,25 +14,29 @@
                 <v-container fill-height fluid>
                   <v-layout grid-list-xs row wrap>
                     <v-flex offset-md1 md5 xs6>
-                      <v-text-field label="First name" v-model="credentials.first_name"></v-text-field>
+                      <v-text-field label="Imię" v-model="credentials.first_name"></v-text-field>
                     </v-flex>
                     <v-flex xs6 md5>
-                      <v-text-field label="Last name" v-model="credentials.last_name"></v-text-field>
+                      <v-text-field label="Nazwisko" v-model="credentials.last_name"></v-text-field>
                     </v-flex>
                     <v-flex offset-md1 xs12 md10>
                       <v-text-field label="E-mail" :rules="emailRules" v-model="credentials.email" required></v-text-field>
                     </v-flex>
                     <v-flex offset-md1 xs12 md10>
-                      <v-text-field label="Username" :rules="requiredRule" v-model="credentials.username" required></v-text-field>
+                      <v-text-field label="Login" :rules="requiredRule" v-model="credentials.username"
+                                    required></v-text-field>
                     </v-flex>
                     <v-flex offset-md1 xs12 md10>
-                      <v-text-field label="Password" type="password" v-model="credentials.password" :rules="requiredRule" required></v-text-field>
+                      <v-text-field label="Hasło" type="password" v-model="credentials.password" :rules="requiredRule"
+                                    required></v-text-field>
                     </v-flex>
                     <v-flex offset-md1 xs12 md10>
-                      <v-btn color="primary" block round depressed type="submit" v-on:click="login">Sign up</v-btn>
+                      <v-btn color="primary" block round depressed type="submit" v-on:click="login">Zarejestruj się
+                      </v-btn>
                     </v-flex>
                     <v-flex offset-md1 xs12 md10>
-                        Already have an account? <router-link to="/login">Sign in</router-link>
+                      Masz już konto?
+                      <router-link to="/login">Zaloguj się</router-link>
                     </v-flex>
                   </v-layout>
                 </v-container>
@@ -57,9 +61,9 @@ export default {
         username: "",
         password: ""
       },
-      requiredRule: [v => !!v || "This field is required"],
+      requiredRule: [v => !!v || "To pole jest wymagane"],
       emailRules: [
-        v => !!v || "E-mail is required",
+        v => !!v || "Adres E-mail jest wymagany",
         v =>
           /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/.test(v) ||
           "E-mail must be valid"

@@ -33,6 +33,7 @@ Vue.http.interceptors.push((request, next) => {
   })
 })
 
+
 new Vue({
   el: '#app',
   router,
