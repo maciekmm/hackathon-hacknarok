@@ -55,14 +55,26 @@
 </template>
 
 <script>
-  module.exports = {
+  import { API_URL } from '../../constants';
+
+  export default {
     name: 'EventListItem',
     props: ['event'],
     methods: {
       joinRoom(roomId) {
-        console.log('Joinging room: ' + roomId);
-        // let room = this.event;
-        // room.members = room.members.concat()
+        console.log(this.$store.rooms);
+
+        let room = this.$store.data.rooms.filter(room => room.pk === roomId)[0];
+        console.log(room);
+        room.members = room.members.concat(this.$store.user.pk);
+
+        this.$http.put(API_URL + 'rooms/' + room.pk, room)
+          .then(response => {
+            console.log(response);
+            // this.$store.data.rooms[response.bo]
+          });
+        console.log(room);
+
       },
       degreesToRadians(degrees) {
         return (degrees);

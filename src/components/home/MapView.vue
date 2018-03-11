@@ -70,8 +70,7 @@ export default {
     );
     this.$http.get(API_URL + "rooms/").then(
       data => {
-        this.store.rooms = data.body;
-        console.log(this.$store.data);
+        this.$store.data.rooms = data.body;
       },
       data => {
         this.error = data.err;

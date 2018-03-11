@@ -21,7 +21,7 @@ let store = {
       };
     },
     logout: (router) => {
-      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('token');
       if(router) {
         router.push('/login')
       }
@@ -29,7 +29,8 @@ let store = {
   },
   data: {
     rooms: [],
-    categories: []
+    categories: [],
+    user: {}
   }
 
 };
