@@ -109,6 +109,5 @@ currentUsers: test.currentUsers,
     padding: 10px;
     font-size: large;
     font-weight: bold;
-    border: 2px solid orange;
   }
 </style>
