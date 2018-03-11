@@ -1,9 +1,7 @@
 import {API_URL} from '@/constants.js'
 
 import Vue from 'vue'
-
-const jwtDecode = require('jwt-decode');
-
+import jwtDecode from 'jwt-decode'
 
 let store = {
   bus: new Vue(),
