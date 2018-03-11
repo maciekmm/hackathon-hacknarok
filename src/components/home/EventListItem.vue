@@ -42,7 +42,7 @@
             </v-layout>
           </v-flex>
           <v-flex>
-            <v-btn block color="primary" round>Dołącz</v-btn>
+            <v-btn depressed block color="primary">Dołącz</v-btn>
           </v-flex>
         </v-layout>
       </v-card-text>
@@ -109,9 +109,5 @@ currentUsers: test.currentUsers,
     padding: 10px;
     font-size: large;
     font-weight: bold;
-    border: 2px solid orange;
-  }
-  div {
-    border-radius: 20px;
   }
 </style>

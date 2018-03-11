@@ -21,6 +21,12 @@ let store = {
       return {
         'Authorization': 'JWT ' + token()
       };
+    },
+    logout: (router) => {
+      window.localStorage.removeItem('token')
+      if(router) {
+        router.push('/login')
+      }
     }
   },
   data: {

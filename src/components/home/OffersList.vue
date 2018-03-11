@@ -92,5 +92,4 @@
     height: 60px;
     background: #00a99d;
   }
-
 </style>
