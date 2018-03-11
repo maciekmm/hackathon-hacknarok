@@ -10,7 +10,7 @@
         </div>
         <v-container grid-list-md text-xs-center>
           <v-layout row wrap>
-            <eventListItem class="align--left" v-for="item in store.rooms" :key="item.pk" :event="item">
+            <eventListItem color="primary" v-for="item in store.rooms" :key="item.pk" :event="item">
             </eventListItem>
           </v-layout>
         </v-container>

@@ -1,7 +1,7 @@
 <template>
-  <v-flex xs6>
-    <v-card>
-      <v-card-title class="px-0" primary-title>
+  <v-flex xs12 sm6 md4 lg3>
+    <v-card style="height: 100%">
+      <v-card-title class="px-0" primary-title style="height: 60%">
         <p class="orange--text time">
           {{(new Date(this.event.start)).toLocaleDateString()}}
           <br>
@@ -16,7 +16,7 @@
               </div>
             </div>
       </v-card-title>
-      <v-card-text class="px-0">
+      <v-card-text class="px-0" style="height: 40%">
         <v-layout wrap fluid>
           <v-flex xs8>
             <v-layout class="align-center">
@@ -77,7 +77,7 @@ currentUsers: test.currentUsers,
   }
 
   .distance {
-    font-weight: bolder;
+    font-weight: bold;
   }
 
   .time {
