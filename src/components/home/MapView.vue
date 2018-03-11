@@ -1,50 +1,76 @@
 <template>
-<div class="map-wrapper">
-  <div style="height: 100%; width: 100%;">
-    <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13">
-    </gmap-map>
-    <v-btn bottom fab right fixed @click="this.getLocationAndCenter" class="center-button" >
+  <div class="map-wrapper">
+    <v-toolbar fixed class="gradient-background" flat height="100">
+      <v-container class="pointer-events" align-center grid-list-xs text-xs-center>
+        <v-layout row wrap>
+          <v-flex sm12 md2 text-xs-center>
+            <router-link class="link-disabled" to="/">
+              <v-toolbar-title class="white--text display-1" style="font-weight: bold">WeLearn</v-toolbar-title>
+            </router-link>
+          </v-flex>
+          <v-flex sm12 md8>
+            <v-text-field class="mx-auto search-bar" prepend-icon="search" hide-details solo light single-line/>
+          </v-flex>
+          <v-flex sm12 md2>
+            <v-select label="Category"
+                      solo
+                      clearable="true"
+                      :close-on-click="true"
+                      :items="this.store.categories"
+                      item-text="caption"
+                      item-key="pk"
+                      single-line
+                      hide-details/>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-toolbar>
+
+    <gmap-map :center="center" :position="center" :options="{disableDefaultUI: true}" :zoom="13"/>
+    <v-btn bottom fab right fixed @click="this.getLocationAndCenter" class="center-button">
       <v-icon dark>{{ this.icon }}</v-icon>
     </v-btn>
-    <offers-list></offers-list>
+    <offers-list/>
   </div>
+
 </template>
 
 <script>
   import {
     store,
     API_HOST
-  } from "../../store/store.js";
-  import * as VueGoogleMaps from "vue2-google-maps";
-  import Vue from "vue";
-  import OffersList from "./OffersList.vue";
+  } from '../../store/store.js';
+  import * as VueGoogleMaps from 'vue2-google-maps';
+  import Vue from 'vue';
+  import OffersList from './OffersList.vue';
 
   Vue.use(VueGoogleMaps, {
     load: {
-      key: "AIzaSyBr8wwgdwKJadT6Tdwc2D5drd9KIElpZVw",
+      key: 'AIzaSyBr8wwgdwKJadT6Tdwc2D5drd9KIElpZVw'
     }
   });
 
   export default {
-    name: "MapView",
+    name: 'MapView',
     data: function data() {
       return {
         center: {
           lat: 10.0,
           lng: 10.0
         },
-        icon: "gps_not_fixed",
+        icon: 'gps_not_fixed',
         rooms: store.store.rooms,
-        error: ""
+        error: '',
+        store: store.store
       };
     },
     mounted() {
       store.login(this, {
-        username: "admin",
-        password: "admin0000"
+        username: 'admin',
+        password: 'admin0000'
       }, data => {
         this.$http
-          .get(API_HOST + "rooms/", {
+          .get(API_HOST + 'rooms/', {
             headers: store.getAuthHeader()
           })
           .then(
@@ -60,13 +86,13 @@
     },
     methods: {
       getLocationAndCenter() {
-        this.icon = "gps_not_fixed";
+        this.icon = 'gps_not_fixed';
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(this.centerMap, error => {
-            this.icon = "gps_off";
+            this.icon = 'gps_off';
           });
         } else {
-          this.icon = "gps_off";
+          this.icon = 'gps_off';
         }
       },
       centerMap(position) {
@@ -74,7 +100,7 @@
           lat: position.coords.latitude + Math.random() / 1000,
           lng: position.coords.longitude + Math.random() / 1000
         };
-        this.icon = "gps_fixed";
+        this.icon = 'gps_fixed';
       }
     },
     components: {
@@ -84,6 +110,11 @@
 
 </script>
 <style>
+
+  .link-disabled {
+    text-decoration: none;
+  }
+
   .map-wrapper {
     height: 100%;
     width: 100%;
@@ -93,6 +124,7 @@
     width: 100%;
     height: calc(100% - 60px);
   }
+
   .center-button {
     margin-bottom: 60px;
     z-index: 1;

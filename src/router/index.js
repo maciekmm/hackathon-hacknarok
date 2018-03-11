@@ -1,13 +1,14 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import EventListItem from '@/components/home/EventListItem.vue'
-import 'vuetify/dist/vuetify.min.css'
-import MapView from '@/components/home/MapView'
-import 'vuetify/dist/vuetify.min.css'
-import Vuetify from 'vuetify'
-var VueTouch = require('vue-touch')
+import Vue from 'vue';
+import Router from 'vue-router';
+import EventListItem from '@/components/home/EventListItem.vue';
+import 'vuetify/dist/vuetify.min.css';
+import MapView from '@/components/home/MapView';
+import 'vuetify/dist/vuetify.min.css';
+import Vuetify from 'vuetify';
+import Room from '@/components/room/Room';
+var VueTouch = require('vue-touch');
 
-Vue.use(VueTouch, {name: 'v-touch'})
+Vue.use(VueTouch, { name: 'v-touch' });
 Vue.use(Vuetify, {
   theme: {
     primary: '#00A99D',
@@ -15,8 +16,9 @@ Vue.use(Vuetify, {
     secondary: '#494949',
     secondaryText: '#8E8E8E'
   }
-})
-Vue.use(Router)
+});
+
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -29,6 +31,11 @@ export default new Router({
       path: '/event',
       name: 'EventListItem',
       component: EventListItem
+    },
+    {
+      path: '/room/:roomId',
+      name: 'Room',
+      component: Room
     }
   ]
-})
+});

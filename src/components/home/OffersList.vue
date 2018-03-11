@@ -9,7 +9,12 @@
           </v-btn>
         </div>
         <v-layout row wrap>
-          <eventListItem class="align--left" v-for="item in store.rooms" :key="item.pk" :event="item">
+          <eventListItem
+            class="align--left"
+            v-for="item in store.rooms"
+            @click.native="goToRoom(item.pk)"
+            :key="item.pk"
+            :event="item">
           </eventListItem>
         </v-layout>
       </v-touch>
@@ -39,10 +44,13 @@
         let element = document.getElementById("swipe-container")
         if (this.collapsed) {
           element.classList.remove("swipe-active")
-          element.scrollTo(0,0)
+          element.scrollTo(0, 0)
         } else {
           element.classList.add("swipe-active")
         }
+      },
+      goToRoom: function(roomId) {
+        this.$router.push({ name: 'Room', params: { roomId: roomId } });
       }
     },
     components: {
