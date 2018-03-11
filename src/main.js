@@ -20,12 +20,13 @@ Vue.http.interceptors.push((request, next) => {
   }
   next((response) => {
     if (response.status === 401) {
-      return Vue.http.post(API_URL + 'api-token-refresh').then((result) => {
+      return Vue.http.post(API_URL + 'api-token-refresh/', {token: token}).then((result) => {
           return Vue.http(request).then((response) => {
             return response
           })
         })
-        .catch(() => {
+        .catch((eee) => {
+          console.log(eee)
           return router.push('login')
         })
     }

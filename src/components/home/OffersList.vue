@@ -9,6 +9,13 @@
           </v-btn>
         </div>
         <v-container grid-list-md text-xs-center>
+          <v-layout row wrap>
+            <eventListItem
+              color="primary"
+              v-for="item in store.rooms"
+              @click.native="goToRoom(item.pk)"
+              :key="item.pk"
+              :event="item">
           <v-layout row wrap align-content-space-around justify-space-around>
             <eventListItem color="primary" v-for="item in store.rooms" :key="item.pk" :event="item">
             </eventListItem>

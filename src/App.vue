@@ -2,56 +2,53 @@
   <v-app>
     <v-content pa-0>
       <v-container fill-height fill-width pa-0 fluid>
+        <transition name="fade">
         <router-view :key="$route.fullPath"/>
+        </transition>
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-  import {
-    API_URL
-  } from '@/constants.js'
+import { API_URL } from "@/constants.js";
 
-  export default {
-    name: 'app',
-    data() {
-      return {
-
-        store: this.$store.data
-      }
-    },
-    mounted() {
-      this.$http.get(API_URL + "categories/")
-        .then(
-          data => {
-            this.store.categories = data.body;
-          },
-          data => {
-            this.error = data.err;
-          }
-        );
-    }
-  };
+export default {
+  name: "app"
+};
 </script>
 
 <style>
-  html {
-    overflow: hidden;
-  }
+html {
+  overflow: auto;
+}
 
-  .gradient-background {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 169, 157, 1) 100%);
-    background-color: transparent !important;
-    color: #ffffff;
-    pointer-events: none;
-  }
+.gradient-background {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 169, 157, 1) 100%
+  );
+  background-color: transparent !important;
+  color: #ffffff;
+  pointer-events: none;
+}
 
-  .pointer-events {
-    pointer-events: all;
-  }
+.pointer-events {
+  pointer-events: all;
+}
 
-  * {
-    font-family: 'Montserrat';
-  }
+* {
+  font-family: "Montserrat";
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  position: absolute;
+  opacity: 0;
+}
 </style>

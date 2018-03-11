@@ -15,7 +15,7 @@
         </v-flex>
 
         <v-flex xs8>
-          <div class="card-header">
+          <div class="card-header rounded">
             <div class="no-margin">
               <span class="black--text">{{this.event.caption}}</span>
               <br>
@@ -45,7 +45,11 @@
             </v-layout>
           </v-flex>
           <v-flex>
-            <v-btn depressed block color="primary">Dołącz</v-btn>
+            <v-btn
+              @click.stop="joinRoom(event.pk)"
+              block color="primary" round>
+              Dołącz
+            </v-btn>
           </v-flex>
         </v-layout>
       </v-card-text>
@@ -58,8 +62,10 @@
     name: 'EventListItem',
     props: ['event'],
     methods: {
-      pickUser() {
-        this.$router.push('/user/User.vue');
+      joinRoom(roomId) {
+        console.log('Joinging room: ' + roomId);
+        // let room = this.event;
+        // room.members = room.members.concat()
       },
       distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
         var earthRadiusKm = 6371;
@@ -75,8 +81,6 @@
   }
 
 </script>
-$spacer := 16px
-
 subject: test.subject,
 subjectDesc: test.subjectDesc,
 distance: test.distance,
@@ -84,8 +88,14 @@ currentUsers: test.currentUsers,
 
 <style scoped>
   .event-card {
+    cursor: pointer;
     word-wrap: normal;
   }
+
+  .event-card:hover {
+    background-color: #e6e6e6;
+  }
+
   * {
     padding: 3px;
   }
@@ -111,5 +121,9 @@ currentUsers: test.currentUsers,
     padding: 10px;
     font-size: large;
     font-weight: bold;
+  }
+
+  .rounded {
+    border-radius: 20px;
   }
 </style>

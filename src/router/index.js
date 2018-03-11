@@ -6,7 +6,8 @@ import MapView from '@/components/home/MapView'
 import 'vuetify/dist/vuetify.min.css'
 import Vuetify from 'vuetify'
 import Login from '@/components/user/Login'
-const VueTouch = require('vue-touch')
+import Register from '@/components/user/Register'
+import VueTouch from 'vue-touch'
 import Room from '@/components/room/Room'
 
 Vue.use(VueTouch, { name: 'v-touch' });
@@ -42,6 +43,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     }
   ]
 });
