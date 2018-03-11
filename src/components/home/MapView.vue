@@ -8,6 +8,7 @@
     </v-btn>
     <offers-list></offers-list>
   </div>
+</div>
 </template>
 
 <script>
