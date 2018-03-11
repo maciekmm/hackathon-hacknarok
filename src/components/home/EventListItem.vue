@@ -1,8 +1,8 @@
 <template>
-  <v-flex xs12 sm6 md4 lg3 style="word-wrap: normal">
-    <v-card style="height: 100%">
+  <v-flex xs12 sm6 md4 class="event-card">
+    <v-card class="max-height">
 
-      <v-card-title class="px-0" primary-title style="height: 50%">
+      <v-card-title class="px-0 height-half" primary-title>
         <v-flex xs4>
 
           <p class="orange--text time">
@@ -14,7 +14,7 @@
 
         <v-flex xs8>
           <div class="card-header">
-            <div style="margin: 0 auto">
+            <div class="no-margin">
               <span class="black--text">{{this.event.caption}}</span>
               <br>
               <span class="secondaryText--text" v-if="this.event.description">{{this.event.description}}</span>
@@ -22,7 +22,7 @@
           </div>
         </v-flex>
       </v-card-title>
-      <v-card-text class="px-0" style="height: 50%">
+      <v-card-text class="px-0 no-margin">
         <v-layout wrap fluid>
           <v-flex xs8>
             <v-layout class="align-center">
@@ -78,12 +78,29 @@ distance: test.distance,
 currentUsers: test.currentUsers,
 
 <style scoped>
+
+  .event-card {
+    word-wrap: normal;
+  }
+
   * {
     padding: 3px;
   }
 
+  .max-height {
+    height: 100%
+  }
+
+  .height-half {
+    height: 50%
+  }
+
   .distance {
     font-weight: bold;
+  }
+
+  .no-margin {
+    margin: 0 auto;
   }
 
   .time {
