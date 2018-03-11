@@ -7,6 +7,10 @@ export var store = {
 		role: 0
     },
 
+    store: {
+        rooms: [],
+    },
+
 	login (context, creds, callback) {
 		context.$http.post(API_HOST + 'api-token-auth/', creds).then((data) => {
 			localStorage.setItem('jwt_token', data.body.token)

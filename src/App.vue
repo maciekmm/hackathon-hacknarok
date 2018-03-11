@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-toolbar fixed class="gradient-background" flat height="100">
-
       <v-container class="pointer-events" align-center grid-list-xs text-xs-center>
         <v-layout row wrap>
           <v-flex sm12 md2 text-xs-center>
@@ -25,10 +24,8 @@
 </template>
 
 <script>
-  import ListElement from "./components/home/eventListItem";
 
 export default {
-  components: {ListElement},
   name: 'app',
   data() {
     return {
@@ -48,9 +45,6 @@ export default {
 
 .pointer-events {
   pointer-events: all;
-}
-
-.search-bar {
 }
 
 * {
