@@ -23,9 +23,6 @@
 </template>
 <script>
   import EventListItem from "./EventListItem.vue";
-  import {
-    store
-  } from "./../../store/store.js";
 
   export default {
     name: "OffersList",
@@ -34,7 +31,7 @@
     },
     data() {
       return {
-        store: store.store,
+        store: this.$store.data,
         collapsed: false
       };
     },

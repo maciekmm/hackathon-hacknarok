@@ -9,34 +9,28 @@
 </template>
 
 <script>
-  import {store, API_HOST} from './store/store.js'
+  import {
+    API_URL
+  } from '@/constants.js'
 
   export default {
     name: 'app',
     data() {
       return {
-        store: store.store
-      };
+
+        store: this.$store.data
+      }
     },
     mounted() {
-      store.login(this, {
-        username: 'admin',
-        password: 'admin0000'
-      }, data => {
-        this.$http
-          .get(API_HOST + 'categories/', {
-            headers: store.getAuthHeader()
-          })
-          .then(
-            data => {
-              store.store.categories = data.body;
-              console.log(store.store.categories);
-            },
-            data => {
-              this.error = data.err;
-            }
-          );
-      });
+      this.$http.get(API_URL + "categories/")
+        .then(
+          data => {
+            this.store.categories = data.body;
+          },
+          data => {
+            this.error = data.err;
+          }
+        );
     }
   };
 </script>
@@ -45,8 +39,6 @@
   html {
     overflow: hidden;
   }
-
-
 
   .gradient-background {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 169, 157, 1) 100%);

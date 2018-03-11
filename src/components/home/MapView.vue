@@ -43,6 +43,9 @@
   import * as VueGoogleMaps from 'vue2-google-maps';
   import Vue from 'vue';
   import OffersList from './OffersList.vue';
+  import {
+    API_URL
+  } from '@/constants.js'
 
   Vue.use(VueGoogleMaps, {
     load: {
@@ -65,23 +68,17 @@
       };
     },
     mounted() {
-      store.login(this, {
-        username: 'admin',
-        password: 'admin0000'
-      }, data => {
-        this.$http
-          .get(API_HOST + 'rooms/', {
-            headers: store.getAuthHeader()
-          })
-          .then(
-            data => {
-              store.store.rooms = data.body;
-            },
-            data => {
-              this.error = data.err;
-            }
-          );
-      });
+      this.$http
+        .get(API_URL + "rooms/")
+        .then(
+          data => {
+            this.data.rooms = data.body;
+            console.log(this.$store.data)
+          },
+          data => {
+            this.error = data.err;
+          }
+        );
       this.getLocationAndCenter();
     },
     methods: {
@@ -129,4 +126,5 @@
     margin-bottom: 60px;
     z-index: 1;
   }
+
 </style>
