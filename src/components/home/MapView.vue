@@ -32,7 +32,6 @@
     </v-btn>
     <offers-list/>
   </div>
-
 </template>
 
 <script>

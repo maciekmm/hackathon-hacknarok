@@ -8,15 +8,12 @@
             <v-icon v-else>keyboard_arrow_down</v-icon>
           </v-btn>
         </div>
-        <v-layout row wrap>
-          <eventListItem
-            class="align--left"
-            v-for="item in store.rooms"
-            @click.native="goToRoom(item.pk)"
-            :key="item.pk"
-            :event="item">
-          </eventListItem>
-        </v-layout>
+        <v-container grid-list-md text-xs-center>
+          <v-layout row wrap>
+            <eventListItem color="primary" v-for="item in store.rooms" :key="item.pk" :event="item">
+            </eventListItem>
+          </v-layout>
+        </v-container>
       </v-touch>
     </div>
   </div>
@@ -90,4 +87,5 @@
     height: 60px;
     background: #00a99d;
   }
+
 </style>
