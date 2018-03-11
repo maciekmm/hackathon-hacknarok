@@ -1,22 +1,28 @@
 <template>
-  <v-flex xs12 sm6 md4 lg3>
+  <v-flex xs12 sm6 md4 lg3 style="word-wrap: normal">
     <v-card style="height: 100%">
-      <v-card-title class="px-0" primary-title style="height: 60%">
-        <p class="orange--text time">
-          {{(new Date(this.event.start)).toLocaleDateString()}}
-          <br>
+
+      <v-card-title class="px-0" primary-title style="height: 50%">
+        <v-flex xs4>
+
+          <p class="orange--text time">
+            <!--{{(new Date(this.event.start)).toLocaleDateString()}}
+            <br>-->
           {{(new Date(this.event.start)).toTimeString().substr(0,5)}}
         </p>
+        </v-flex>
 
-        <div class="card-header">
-              <div style="margin: 0 auto">
-                <span class="headline">{{this.event.caption}}</span>
-                <br>
-                <span class="secondaryText--text" v-if="this.event.description">{{this.event.description}}</span>
-              </div>
+        <v-flex xs8>
+          <div class="card-header">
+            <div style="margin: 0 auto">
+              <span class="black--text">{{this.event.caption}}</span>
+              <br>
+              <span class="secondaryText--text" v-if="this.event.description">{{this.event.description}}</span>
             </div>
+          </div>
+        </v-flex>
       </v-card-title>
-      <v-card-text class="px-0" style="height: 40%">
+      <v-card-text class="px-0" style="height: 50%">
         <v-layout wrap fluid>
           <v-flex xs8>
             <v-layout class="align-center">
