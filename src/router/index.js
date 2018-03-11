@@ -16,6 +16,11 @@ Vue.use(Vuetify, {
     secondaryText: '#8E8E8E'
   }
 })
+var VueTouch = require('vue-touch')
+Vue.use(VueTouch)
+VueTouch.config.swipe = {
+  direction: 'horizontal'
+}
 Vue.use(Router)
 
 export default new Router({
