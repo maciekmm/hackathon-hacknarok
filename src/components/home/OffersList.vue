@@ -3,11 +3,12 @@
     <div id="swipe-container" v-on:swipeup="toggle" class="swipe mx-auto" fill-width grid-list-md text-xs-center>
       <v-touch @swipeup="toggle" @swipedown="toggle">
         <div class="button-wrapper">
-          <v-btn class="trigger-button" color="primary" depressed @click="toggle">
+          <v-btn style="display: inline-block; width: 100%" class="trigger-button" color="primary" depressed @click="toggle">
             <v-icon v-if="collapsed">keyboard_arrow_up</v-icon>
             <v-icon v-else>keyboard_arrow_down</v-icon>
           </v-btn>
         </div>
+      </v-touch>
         <v-container grid-list-md text-xs-center>
           <v-layout row wrap align-content-space-around justify-space-around>
             <eventListItem
@@ -18,7 +19,6 @@
               :event="item"></eventListItem>
           </v-layout>
         </v-container>
-      </v-touch>
     </div>
   </div>
 </template>
