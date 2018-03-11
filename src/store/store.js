@@ -29,8 +29,7 @@ let store = {
   },
   data: {
     rooms: [],
-    categories: [],
-    user: {}
+    categories: []
   }
 
 };

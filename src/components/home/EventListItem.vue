@@ -68,15 +68,18 @@
         console.log(this.$store.rooms);
 
         let room = this.$store.data.rooms.filter(room => room.pk === roomId)[0];
-        console.log(room);
-        room.members = room.members.concat(this.$store.user.pk);
+        let userPk = window.localStorage.getItem('userPk');
+
+        const userIndex = room.members.indexOf(userPk);
+        if (userIndex > -1) {
+          room.members.splice(userIndex, 1);
+        }
+        room.members = room.members.concat(userPk);
 
         this.$http.put(API_URL + 'rooms/' + room.pk, room)
           .then(response => {
-            console.log(response);
-            // this.$store.data.rooms[response.bo]
-          });
-        console.log(room);
+          })
+          .catch(err => console.log);
 
       },
       distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {

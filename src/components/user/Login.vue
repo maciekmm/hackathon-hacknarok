@@ -57,7 +57,7 @@
           .post(API_URL + "api-token-auth/", this.credentials)
           .then(response => {
             window.localStorage.setItem("token", response.data.token);
-            this.$store.data.user = response.data;
+            window.localStorage.setItem('userPk', response.data.pk);
             this.$router.push("/");
           })
           .catch(errors => {
