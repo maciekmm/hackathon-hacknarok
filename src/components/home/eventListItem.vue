@@ -5,7 +5,7 @@
         <v-layout row align="end">
           <p id="time" class="orange--text">{{time}}</p>
           <v-flex>
-            <div style="margin: 0 auto">
+            <div class="card-header">
               <span class="headline">{{subject}}</span>
               <br>
               <span class="secondaryText--text">{{subjectDesc}}</span>
@@ -16,7 +16,7 @@
       <v-card-text>
         <v-layout wrap fluid>
           <v-flex xs8>
-            <v-layout style="text-align: center">
+            <v-layout class="align-center">
               <v-flex>
                 <span id="distance" class="primary--text">{{distance}}</span>
               </v-flex>
@@ -41,20 +41,24 @@
   module.exports = {
     name: 'eventListItem',
     data: function (test) {
-      return {
-        subject: test.subject,
-        subjectDesc: test.subjectDesc,
-        distance: test.distance,
-        currentUsers: test.currentUsers,
-        totalUsers: test.totalUsers,
+      return {lUsers: test.totalUsers,
         time: test.time
 
       }
     }
   }
 </script>
+        subject: test.subject,
+        subjectDesc: test.subjectDesc,
+        distance: test.distance,
+        currentUsers: test.currentUsers,
+        tota
 
 <style scoped>
+
+  .card-header {
+    margin: 0 auto
+  }
 
   #distance {
     font-weight: bolder;

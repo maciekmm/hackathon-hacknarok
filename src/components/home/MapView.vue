@@ -1,5 +1,5 @@
 <template>
-<div style="height: 100%; width: 100%;">
+<div class="map-wrapper">
   <gmap-map
     :center="center"
     :position="center"
@@ -75,6 +75,11 @@ export default {
 };
 </script>
 <style>
+  .map-wrapper {
+    height: 100%;
+    width: 100%;
+  }
+
 .vue-map-container {
   width: 100%;
   height: calc(100% - 60px);

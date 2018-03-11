@@ -39,6 +39,10 @@ export default {
 </script>
 
 <style>
+  html {
+    overflow: hidden;
+  }
+
 .gradient-background {
   background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 169, 157, 1) 100%);
   background-color:transparent !important;
