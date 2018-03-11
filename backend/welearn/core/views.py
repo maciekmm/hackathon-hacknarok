@@ -1,3 +1,4 @@
+from django.contrib.auth import hashers
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render
@@ -43,9 +44,12 @@ class ProfileSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     profile = serializers.StringRelatedField(many=False)
 
+    def validate_password(self, value):
+        return hashers.make_password(value)
+
     class Meta:
         model = User
-        fields = ('pk', 'profile', 'username', 'first_name', 'last_name', 'email')
+        fields = ('pk', 'profile', 'password', 'username', 'first_name', 'last_name', 'email')
 
 
 @api_view(['GET', 'POST'])
