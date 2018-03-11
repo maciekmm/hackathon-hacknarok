@@ -182,6 +182,9 @@ class ObtainJWTToken(ObtainJSONWebToken):
     # UTTERLY UGLY!
     def post(self, request, *args, **kwargs):
         jwt_response = super(ObtainJWTToken, self).post(request, *args, **kwargs)
+        if jwt_response.status_code == status.HTTP_400_BAD_REQUEST:
+            return jwt_response
+
         user = User.objects.get(username=request.data.get('username'))
 
         # print(UserSerializer(user).data)
