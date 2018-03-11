@@ -60,7 +60,7 @@ import { API_URL } from "@/constants.js";
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyBr8wwgdwKJadT6Tdwc2D5drd9KIElpZVw"
+    key: ""
   }
 });
 
