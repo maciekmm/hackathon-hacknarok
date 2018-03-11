@@ -35,12 +35,13 @@
     },
     methods: {
       toggle: function () {
-        this.collapsed = !this.collapsed;
-        let element = document.getElementById("swipe-container");
+        this.collapsed = !this.collapsed
+        let element = document.getElementById("swipe-container")
         if (this.collapsed) {
-          element.classList.remove("swipe-active");
+          element.classList.remove("swipe-active")
+          element.scrollTo(0,0)
         } else {
-          element.classList.add("swipe-active");
+          element.classList.add("swipe-active")
         }
       }
     },
@@ -56,16 +57,18 @@
     left: 0;
     transition: all 0.5s;
     text-align: center;
-
     width: 100%;
     position: fixed;
     z-index: 10;
     background: #f7f7f7;
+    overflow: hidden;
     max-height: 100%;
   }
 
   .swipe-active {
     transform: translateY(-100%);
+    overflow: auto;
+    margin-top:60px;
   }
 
   .trigger-button {
@@ -82,5 +85,4 @@
     height: 60px;
     background: #00a99d;
   }
-
 </style>

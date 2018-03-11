@@ -4,20 +4,23 @@ export var store = {
 
 	user: {
 		authenticated: false,
-		role: 0
     },
 
     store: {
-        rooms: [],
+		rooms: [],
+		categories: []
     },
 
 	login (context, creds, callback) {
+		if(this.user.authenticated) {
+			callback(data.body.token);
+		}
 		context.$http.post(API_HOST + 'api-token-auth/', creds).then((data) => {
 			localStorage.setItem('jwt_token', data.body.token)
             this.user.authenticated = true
 
             if(callback) {
-                callback(data)
+                callback(data.body.token)
             }
 		},
 		(data) => {
